@@ -56,7 +56,7 @@ function appendToDisplay(num){
     }
     else{
         firstNum += num;
-        console.log(firstNum)
+        // console.log(firstNum)
         return display.innerText += num;
     }
 
@@ -80,5 +80,32 @@ function calculate(){
     let firstNumFloat = parseFloat(firstNum);
     let secondNumFloat = parseFloat(secondNum);
     let answer = operator(firstNumFloat,secondNumFloat,op);
-    console.log(answer);
+    display.innerText = answer;
 }
+
+let clear = document.querySelector(".clear")
+
+function reset(){
+    console.log("reset function called");
+    firstNum = "";
+    secondNum = "";
+    op = "";
+    display.innerText = "";
+}
+
+clear.addEventListener("click",reset);
+
+function inputByKeyboard(event) {
+    const key = event.key;
+    if (/[0-9]/.test(key)) {
+      appendToDisplay(key);
+    } else if (key === "+" || key === "-" || key === "*" || key === "/") {
+      appendOpToDisplay(key);
+    } else if (key === "Enter") {
+      calculate();
+    } else if (key === "Backspace") {
+      reset();
+    }
+  }
+  
+  window.addEventListener("keydown", inputByKeyboard);
