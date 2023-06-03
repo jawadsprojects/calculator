@@ -41,3 +41,44 @@ function operator(num1,num2,operator){
         return "invaid operator"
     }
 }
+
+let display = document.querySelector(".display");
+let displayValue = display.innerText;
+
+let firstNum = "";
+let secondNum = "";
+let op = "";
+
+function appendToDisplay(num){
+    if (display.innerText.includes("+") || display.innerText.includes("-") || display.innerText.includes("*") || display.innerText.includes("/")) {
+        secondNum += num;
+        return display.innerText += num;
+    }
+    else{
+        firstNum += num;
+        console.log(firstNum)
+        return display.innerText += num;
+    }
+
+}
+
+
+function appendOpToDisplay(ope, num2) {
+    if(firstNum!==""){
+        if (display.innerText.endsWith("+") || display.innerText.endsWith("-") || display.innerText.endsWith("*") || display.innerText.endsWith("/")) {
+            display.innerText = display.innerText.slice(0, -1) + ope; // Replace the last operator with the current operator
+        } else {
+            op = ope;
+            display.innerText += ope; // Append the current operator to the display
+        }
+    }
+}
+
+
+
+function calculate(){
+    let firstNumFloat = parseFloat(firstNum);
+    let secondNumFloat = parseFloat(secondNum);
+    let answer = operator(firstNumFloat,secondNumFloat,op);
+    console.log(answer);
+}
