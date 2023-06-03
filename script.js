@@ -38,7 +38,8 @@ function operator(num1,num2,operator){
         return divide(num1,num2)
     }
     else{
-        return "invaid operator"
+        return "";
+        // "invaid operator"
     }
 }
 
